@@ -22,7 +22,7 @@ $(function() {
                 // 如果判断失败,则return一个提示消息即可
                 var pwd = $('.reg-box [name=password]').val()
                 if (pwd !== value) {
-                    console.log(pwd);
+                    // console.log(pwd);
 
                     return '两次密码不一致！'
                 }
@@ -33,11 +33,16 @@ $(function() {
         // 1. 阻止默认的提交行为
         e.preventDefault()
             // 2. 发起Ajax的POST请求
+            // console.log(111);
+
         var data = {
-            username: $('#form_reg [name=username]').val(),
-            password: $('#form_reg [name=password]').val()
-        }
-        $.post('http://www.liulongbin.top:3007/api/registerr', data, function(res) {
+                username: $('#form_reg [name=username]').val(),
+                password: $('#form_reg [name=password]').val()
+            }
+            // console.log(data);
+
+        $.post('/api/reguser', data, function(res) {
+
             if (res.status !== 0) {
                 return layer.msg(res.message)
             }
